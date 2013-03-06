@@ -1,0 +1,91 @@
+/* line 2, ../../src/sass/cm.scss */
+h1, h2 {
+  font-family: "Helvetica", Sans-serif;
+  color: #a00;
+}
+
+/* line 7, ../../src/sass/cm.scss */
+img {
+  width: 222px;
+  height: 222px;
+  border: 1px solid #aaaaaa;
+  background-color: white;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  margin: 8px;
+  padding-top: 6px;
+  border-radius: 12px;
+}
+
+/* line 18, ../../src/sass/cm.scss */
+html {
+  margin: 0;
+}
+
+/* line 22, ../../src/sass/cm.scss */
+body {
+  	/* width: 100%;
+  	margin: 0;
+  	height: 100%;
+  	background-color: #eee;
+      */
+  background-color: #ffeac0;
+  background-image: -webkit-repeating-radial-gradient(210px 210px, circle, transparent, transparent 35px, rgba(255, 255, 255, 0.3) 35px, rgba(255, 255, 255, 0.6) 70px);
+}
+
+/* line 34, ../../src/sass/cm.scss */
+.container-fluid {
+  padding-top: 60px;
+  margin: 0;
+}
+
+/* line 40, ../../src/sass/cm.scss */
+.span4 {
+  border: 1px solid red;
+}
+
+/* line 45, ../../src/sass/cm.scss */
+.imagebox {
+  text-align: center;
+  overflow: visible;
+}
+
+/* line 50, ../../src/sass/cm.scss */
+.compmap-navbar {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  background-color: #222;
+}
+
+/* line 55, ../../src/sass/cm.scss */
+.compmap-navbar .navbar-inner {
+  background-color: black;
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.4), transparent);
+}
+
+/* line 60, ../../src/sass/cm.scss */
+.navbar .comp-brand {
+  margin-left: -4px;
+}
+
+/* line 64, ../../src/sass/cm.scss */
+.comp-form-container {
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+/* line 69, ../../src/sass/cm.scss */
+.comp-form-container iframe {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
+}
+
+/* line 73, ../../src/sass/cm.scss */
+.new-team-box {
+  background-color: #aaa;
+}
+
+/* line 77, ../../src/sass/cm.scss */
+.drag-here-placeholder {
+  border: 4px dashed #eeeeee;
+  display: block;
+  width: 240px;
+  height: 240px;
+}
