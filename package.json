@@ -1,0 +1,29 @@
+{
+  "name": "comptency-map",
+  "version": "0.0.2",
+  "author": "Thomas Malt",
+  "description": "A web app for dealing with competency maps",
+  "private": true,
+  "dependencies": {
+    "async": "0.2.4",
+    "ejs": "0.8.3",
+    "express": "3.1.0",
+    "jade": ">= 0.28.1",
+    "underscore": "1.4.4",
+    "mongoose": "3.5.7"
+  },
+  "devDependencies": {
+    "mocha": "1.8.1",
+    "chai": "1.5.0",
+    "grunt": ">= 0.4.0",
+    "grunt-contrib-watch": "0.2.0rc7",
+    "grunt-contrib-sass": "0.2.2rc7",
+    "grunt-contrib-jade": "0.4.0rc7",
+    "grunt-contrib-jshint": "0.1.1rc6",
+    "grunt-contrib-compass": "0.1.2"
+  },
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.2.10"
+  }
+}
