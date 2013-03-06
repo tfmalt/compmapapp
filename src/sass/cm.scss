@@ -1,0 +1,82 @@
+
+h1, h2 {
+    font-family: 'Helvetica', Sans-serif;
+    color: #a00;
+}
+
+img {
+	width: 222px;
+	height: 222px;
+	border: 1px solid #aaa;
+	background-color: white;
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+	margin: 8px;
+	padding-top: 6px;
+	border-radius: 12px;
+}
+
+html {
+	margin: 0;
+}
+
+body {
+	/* width: 100%;
+	margin: 0;
+	height: 100%;
+	background-color: #eee;
+    */
+    background-color: #ffeac0;
+    background-image: -webkit-repeating-radial-gradient(
+        210px 210px, circle, 
+        transparent, transparent 35px, rgba(255,255,255, 0.3) 35px, rgba(255,255,255,.6) 70px);
+}
+
+.container-fluid {
+    padding-top: 60px;
+    margin: 0;
+}
+
+
+.span4 {
+    border: 1px solid red;
+
+}
+
+.imagebox {
+    text-align: center;
+    overflow: visible;
+}
+
+.compmap-navbar {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    background-color: #222;
+}
+
+.compmap-navbar .navbar-inner {
+    background-color: black;
+    background-image: -webkit-linear-gradient(top, rgba(255,255,255, 0.4), transparent);
+}
+
+.navbar .comp-brand {
+    margin-left: -4px;
+}
+
+.comp-form-container {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.comp-form-container iframe {
+    box-shadow: 0 4px 16px rgba(0,0,0, 0.7);
+}
+
+.new-team-box {
+    background-color: #aaa;
+}
+
+.drag-here-placeholder {
+    border: 4px dashed #eee;
+    display: block;
+    width: 240px;
+    height: 240px;
+}
