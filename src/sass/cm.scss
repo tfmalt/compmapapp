@@ -120,26 +120,37 @@ body {
     opacity: 0.6;
 }
 
-.drag-here-placeholder {
-    display: block;
-    width: 222px;
-    height: 228px;
-    background-color: rgba(black, 0.1);
-    border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5) inset;
+.ui-state-highlight {
+    background-color: rgba(224,224,255, 0.2);
+}
 
-    .inner {
-        border: 4px dashed white;
-        margin: 10px;
-        height: 158px;
-        position: relative;
-        top: 10px;
-        padding-top: 42px;
-        font-size: 56px;
-        line-height: 56px;
-        font-weight: bold;
-        text-align: center;
-        text-shadow: 0 2px 12px rgba(black, 0.5);
-        color: white;
+.team-boxes {
+    img {
+        display: inline-block;
+        vertical-align: top;
+    }
+    .drag-here-placeholder {
+        display: inline-block;
+        vertical-align: top;
+        width: 222px;
+        height: 228px;
+        background-color: rgba(black, 0.1);
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5) inset;
+        margin: 8px;
+
+        .inner {
+            border: 4px dashed white;
+            margin: 10px;
+            height: 158px;
+            position: relative;
+            padding-top: 42px;
+            font-size: 56px;
+            line-height: 56px;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 0 2px 12px rgba(black, 0.5);
+            color: white;
+        }
     }
 }
