@@ -1,50 +1,89 @@
-/* line 2, ../../src/sass/cm.scss */
+/* line 3, ../../src/sass/cm.scss */
+html {
+  margin: 0;
+  height: 100%;
+}
+
+/* line 8, ../../src/sass/cm.scss */
+body {
+  background-color: #ffeac0;
+  background-image: -webkit-repeating-radial-gradient(250px 250px, circle, transparent, transparent 50px, rgba(255, 255, 255, 0.3) 50px, rgba(255, 255, 255, 0.3) 100px);
+}
+
+/* line 19, ../../src/sass/cm.scss */
 h1, h2 {
   font-family: "Helvetica", Sans-serif;
   color: #a00;
 }
 
-/* line 7, ../../src/sass/cm.scss */
+/* line 24, ../../src/sass/cm.scss */
 .title-box {
   border-bottom: 2px solid #aaaaaa;
 }
-/* line 9, ../../src/sass/cm.scss */
+/* line 26, ../../src/sass/cm.scss */
 .title-box h2 {
   display: inline-block;
   margin-bottom: 0;
 }
-/* line 14, ../../src/sass/cm.scss */
+/* line 31, ../../src/sass/cm.scss */
 .title-box span {
   margin-left: 6px;
   font-size: 17px;
   color: #aaa;
   cursor: pointer;
 }
-
-/* line 22, ../../src/sass/cm.scss */
-html {
-  margin: 0;
-  height: 100%;
-}
-
-/* line 27, ../../src/sass/cm.scss */
-body {
-  background-color: #ffeac0;
-  background-image: -webkit-repeating-radial-gradient(250px 250px, circle, transparent, transparent 50px, rgba(255, 255, 255, 0.3) 50px, rgba(255, 255, 255, 0.3) 100px);
-}
-
 /* line 38, ../../src/sass/cm.scss */
+.title-box .legend {
+  display: inline-block;
+  vertical-align: middle;
+  background-color: white;
+  border: 1px solid #aaaaaa;
+  font-size: 15px;
+  color: #888;
+  padding: 4px 18px 4px 6px;
+  margin-left: 6px;
+  margin-bottom: 2px;
+  border-radius: 4px;
+}
+/* line 49, ../../src/sass/cm.scss */
+.title-box .legend div {
+  margin-left: 12px;
+  vertical-align: middle;
+  display: inline-block;
+  position: relative;
+  top: -1px;
+  width: 12px;
+  height: 12px;
+  border: 1px solid red;
+}
+/* line 60, ../../src/sass/cm.scss */
+.title-box .legend .color-experience {
+  border: 1px solid #ff9900;
+  background-color: rgba(255, 153, 0, 0.3);
+}
+/* line 65, ../../src/sass/cm.scss */
+.title-box .legend .color-knowledge {
+  border: 1px solid #4444ff;
+  background-color: rgba(68, 68, 255, 0.3);
+}
+/* line 70, ../../src/sass/cm.scss */
+.title-box .legend .color-motivation {
+  border: 1px solid #00aa00;
+  background-color: rgba(0, 170, 0, 0.3);
+}
+
+/* line 76, ../../src/sass/cm.scss */
 .container-fluid {
   padding-top: 60px;
   margin: 0;
 }
 
-/* line 44, ../../src/sass/cm.scss */
+/* line 82, ../../src/sass/cm.scss */
 .span4 {
   border: 1px solid red;
 }
 
-/* line 49, ../../src/sass/cm.scss */
+/* line 87, ../../src/sass/cm.scss */
 .compmap-img {
   width: 222px;
   height: 222px;
@@ -56,41 +95,41 @@ body {
   border-radius: 12px;
 }
 
-/* line 61, ../../src/sass/cm.scss */
+/* line 99, ../../src/sass/cm.scss */
 .imagebox {
   text-align: left;
   overflow: visible;
 }
 
-/* line 68, ../../src/sass/cm.scss */
+/* line 106, ../../src/sass/cm.scss */
 .compmap-navbar {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
   background-color: #222;
 }
 
-/* line 73, ../../src/sass/cm.scss */
+/* line 111, ../../src/sass/cm.scss */
 .compmap-navbar .navbar-inner {
   background-color: black;
   background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.4), transparent);
 }
 
-/* line 82, ../../src/sass/cm.scss */
+/* line 120, ../../src/sass/cm.scss */
 .navbar .comp-brand {
   margin-left: -4px;
 }
 
-/* line 86, ../../src/sass/cm.scss */
+/* line 124, ../../src/sass/cm.scss */
 .comp-form-container {
   padding-left: 3px;
   padding-right: 3px;
 }
 
-/* line 91, ../../src/sass/cm.scss */
+/* line 129, ../../src/sass/cm.scss */
 .comp-form-container iframe {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
 }
 
-/* line 95, ../../src/sass/cm.scss */
+/* line 133, ../../src/sass/cm.scss */
 .new-team-box {
   background-color: rgba(255, 255, 255, 0.5);
   padding: 24px;
@@ -99,16 +138,16 @@ body {
   border-top: 0;
 }
 
-/* line 103, ../../src/sass/cm.scss */
+/* line 141, ../../src/sass/cm.scss */
 .row-fluid .team-boxes {
   margin: 0;
 }
-/* line 106, ../../src/sass/cm.scss */
+/* line 144, ../../src/sass/cm.scss */
 .row-fluid #team-map-nav {
   margin-bottom: 0;
 }
 
-/* line 112, ../../src/sass/cm.scss */
+/* line 150, ../../src/sass/cm.scss */
 .ui-draggable-dragging {
   opacity: 0.7;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
@@ -116,22 +155,22 @@ body {
   height: 230px;
 }
 
-/* line 119, ../../src/sass/cm.scss */
+/* line 157, ../../src/sass/cm.scss */
 .ui-draggable-original {
   opacity: 0.6;
 }
 
-/* line 123, ../../src/sass/cm.scss */
+/* line 161, ../../src/sass/cm.scss */
 .ui-state-highlight {
   background-color: rgba(224, 224, 255, 0.2);
 }
 
-/* line 128, ../../src/sass/cm.scss */
+/* line 166, ../../src/sass/cm.scss */
 .team-boxes img {
   display: inline-block;
   vertical-align: top;
 }
-/* line 132, ../../src/sass/cm.scss */
+/* line 170, ../../src/sass/cm.scss */
 .team-boxes .drag-here-placeholder {
   display: inline-block;
   vertical-align: top;
@@ -142,7 +181,7 @@ body {
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5) inset;
   margin: 8px;
 }
-/* line 142, ../../src/sass/cm.scss */
+/* line 180, ../../src/sass/cm.scss */
 .team-boxes .drag-here-placeholder .inner {
   border: 4px dashed white;
   margin: 10px;
