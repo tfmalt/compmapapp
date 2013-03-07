@@ -4,31 +4,35 @@ h1, h2 {
     color: #a00;
 }
 
-img {
-	width: 222px;
-	height: 222px;
-	border: 1px solid #aaa;
-	background-color: white;
-	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-	margin: 8px;
-	padding-top: 6px;
-	border-radius: 12px;
+.title-box {
+    border-bottom: 2px solid #aaa;
+    h2 {
+        display:       inline-block;
+        margin-bottom: 0;
+    }
+
+    span {
+        margin-left: 6px;
+        font-size: 17px;
+        color: #aaa;
+        cursor: pointer;
+    }
 }
 
 html {
 	margin: 0;
+    height: 100%;
 }
 
 body {
-	/* width: 100%;
-	margin: 0;
-	height: 100%;
-	background-color: #eee;
-    */
     background-color: #ffeac0;
     background-image: -webkit-repeating-radial-gradient(
-        210px 210px, circle, 
-        transparent, transparent 35px, rgba(255,255,255, 0.3) 35px, rgba(255,255,255,.6) 70px);
+        250px 250px, circle, 
+        transparent, 
+        transparent 50px, 
+        rgba(255,255,255, 0.3) 50px, 
+        rgba(255,255,255,.3) 100px
+        );
 }
 
 .container-fluid {
@@ -42,19 +46,37 @@ body {
 
 }
 
+.compmap-img {
+    width: 222px;
+    height: 222px;
+    border: 1px solid #aaa;
+    background-color: white;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    margin: 8px;
+    padding-top: 6px;
+    border-radius: 12px;
+}
+
+
 .imagebox {
-    text-align: center;
+    text-align: left;
     overflow: visible;
+    
+
 }
 
 .compmap-navbar {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
     background-color: #222;
 }
 
 .compmap-navbar .navbar-inner {
     background-color: black;
-    background-image: -webkit-linear-gradient(top, rgba(255,255,255, 0.4), transparent);
+    background-image: -webkit-linear-gradient(
+        top, 
+        rgba(255,255,255, 0.4), 
+        transparent
+        );
 }
 
 .navbar .comp-brand {
@@ -71,12 +93,53 @@ body {
 }
 
 .new-team-box {
-    background-color: #aaa;
+    background-color: rgba(255,255,255, 0.5);
+    padding: 24px;
+    /* margin: -20px -26px 20px -26px; */
+    border: 1px solid #ddd;
+    border-top: 0;
+}
+.row-fluid {
+    .team-boxes {
+        margin: 0;
+    }
+    #team-map-nav {
+        margin-bottom: 0;
+    }
+}
+
+
+.ui-draggable-dragging {
+    opacity: 0.7;
+    box-shadow: 0 12px 24px rgba(black, 0.5);
+    width: 230px;
+    height: 230px;
+}
+
+.ui-draggable-original {
+    opacity: 0.6;
 }
 
 .drag-here-placeholder {
-    border: 4px dashed #eee;
     display: block;
-    width: 240px;
-    height: 240px;
+    width: 222px;
+    height: 228px;
+    background-color: rgba(black, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5) inset;
+
+    .inner {
+        border: 4px dashed white;
+        margin: 10px;
+        height: 158px;
+        position: relative;
+        top: 10px;
+        padding-top: 42px;
+        font-size: 56px;
+        line-height: 56px;
+        font-weight: bold;
+        text-align: center;
+        text-shadow: 0 2px 12px rgba(black, 0.5);
+        color: white;
+    }
 }

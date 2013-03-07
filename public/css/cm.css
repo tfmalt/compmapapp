@@ -5,7 +5,47 @@ h1, h2 {
 }
 
 /* line 7, ../../src/sass/cm.scss */
-img {
+.title-box {
+  border-bottom: 2px solid #aaaaaa;
+}
+/* line 9, ../../src/sass/cm.scss */
+.title-box h2 {
+  display: inline-block;
+  margin-bottom: 0;
+}
+/* line 14, ../../src/sass/cm.scss */
+.title-box span {
+  margin-left: 6px;
+  font-size: 17px;
+  color: #aaa;
+  cursor: pointer;
+}
+
+/* line 22, ../../src/sass/cm.scss */
+html {
+  margin: 0;
+  height: 100%;
+}
+
+/* line 27, ../../src/sass/cm.scss */
+body {
+  background-color: #ffeac0;
+  background-image: -webkit-repeating-radial-gradient(250px 250px, circle, transparent, transparent 50px, rgba(255, 255, 255, 0.3) 50px, rgba(255, 255, 255, 0.3) 100px);
+}
+
+/* line 38, ../../src/sass/cm.scss */
+.container-fluid {
+  padding-top: 60px;
+  margin: 0;
+}
+
+/* line 44, ../../src/sass/cm.scss */
+.span4 {
+  border: 1px solid red;
+}
+
+/* line 49, ../../src/sass/cm.scss */
+.compmap-img {
   width: 222px;
   height: 222px;
   border: 1px solid #aaaaaa;
@@ -16,76 +56,92 @@ img {
   border-radius: 12px;
 }
 
-/* line 18, ../../src/sass/cm.scss */
-html {
-  margin: 0;
-}
-
-/* line 22, ../../src/sass/cm.scss */
-body {
-  	/* width: 100%;
-  	margin: 0;
-  	height: 100%;
-  	background-color: #eee;
-      */
-  background-color: #ffeac0;
-  background-image: -webkit-repeating-radial-gradient(210px 210px, circle, transparent, transparent 35px, rgba(255, 255, 255, 0.3) 35px, rgba(255, 255, 255, 0.6) 70px);
-}
-
-/* line 34, ../../src/sass/cm.scss */
-.container-fluid {
-  padding-top: 60px;
-  margin: 0;
-}
-
-/* line 40, ../../src/sass/cm.scss */
-.span4 {
-  border: 1px solid red;
-}
-
-/* line 45, ../../src/sass/cm.scss */
+/* line 61, ../../src/sass/cm.scss */
 .imagebox {
-  text-align: center;
+  text-align: left;
   overflow: visible;
 }
 
-/* line 50, ../../src/sass/cm.scss */
+/* line 68, ../../src/sass/cm.scss */
 .compmap-navbar {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
   background-color: #222;
 }
 
-/* line 55, ../../src/sass/cm.scss */
+/* line 73, ../../src/sass/cm.scss */
 .compmap-navbar .navbar-inner {
   background-color: black;
   background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.4), transparent);
 }
 
-/* line 60, ../../src/sass/cm.scss */
+/* line 82, ../../src/sass/cm.scss */
 .navbar .comp-brand {
   margin-left: -4px;
 }
 
-/* line 64, ../../src/sass/cm.scss */
+/* line 86, ../../src/sass/cm.scss */
 .comp-form-container {
   padding-left: 3px;
   padding-right: 3px;
 }
 
-/* line 69, ../../src/sass/cm.scss */
+/* line 91, ../../src/sass/cm.scss */
 .comp-form-container iframe {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
 }
 
-/* line 73, ../../src/sass/cm.scss */
+/* line 95, ../../src/sass/cm.scss */
 .new-team-box {
-  background-color: #aaa;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 24px;
+  /* margin: -20px -26px 20px -26px; */
+  border: 1px solid #dddddd;
+  border-top: 0;
 }
 
-/* line 77, ../../src/sass/cm.scss */
+/* line 103, ../../src/sass/cm.scss */
+.row-fluid .team-boxes {
+  margin: 0;
+}
+/* line 106, ../../src/sass/cm.scss */
+.row-fluid #team-map-nav {
+  margin-bottom: 0;
+}
+
+/* line 112, ../../src/sass/cm.scss */
+.ui-draggable-dragging {
+  opacity: 0.7;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+  width: 230px;
+  height: 230px;
+}
+
+/* line 119, ../../src/sass/cm.scss */
+.ui-draggable-original {
+  opacity: 0.6;
+}
+
+/* line 123, ../../src/sass/cm.scss */
 .drag-here-placeholder {
-  border: 4px dashed #eeeeee;
   display: block;
-  width: 240px;
-  height: 240px;
+  width: 222px;
+  height: 228px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5) inset;
+}
+/* line 131, ../../src/sass/cm.scss */
+.drag-here-placeholder .inner {
+  border: 4px dashed white;
+  margin: 10px;
+  height: 158px;
+  position: relative;
+  top: 10px;
+  padding-top: 42px;
+  font-size: 56px;
+  line-height: 56px;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+  color: white;
 }

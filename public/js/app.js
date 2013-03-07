@@ -133,21 +133,31 @@ var app = {
             appendTo: 'body',
             // scroll: false,
             helper: 'clone',
-            start: function () {
-                app.EventManager.trigger("profile-drag-start", $(this));
+            start: function (e, ui) {
+                app.EventManager.trigger("profile-drag-start", {
+                    ui: ui, 
+                    el: $(this)
+                });
             },
-            stop: function () {
-                app.EventManager.trigger("profile-drag-stop", $(this));
+            stop: function (e, ui) {
+                app.EventManager.trigger("profile-drag-stop", {
+                    ui: ui,
+                    el: $(this)
+                });
             }
         });
     },
 
-    handleProfileDragStart: function (event, elem) {
-        console.log("got drag start ", event, "element: ", elem);
+    handleProfileDragStart: function (event, data) {
+        console.log("got drag start ", event, "data: ", data);
+        // data.ui.helper.css('background-color', 'red');
+        // data.el.css('background-color', 'green');
+        data.el.addClass('ui-draggable-original');
     },
 
-    handleProfileDragStop: function (event, elem) {
-        console.log("got drag stop ", event, "element: ", elem);
+    handleProfileDragStop: function (event, args) {
+        console.log("got drag stop ", event, "args: ", args);
+        args.el.removeClass('ui-draggable-original');
     },
 
     toggleImagebox: function (event) {
