@@ -29,6 +29,11 @@
                     <div class="span12 title-box">
                         <h2>Everyone</h2>
                         <span id="everyone-toggle" data-toggle="true", data-target="#everyone">Hide</span>
+                        <div class="legend">
+                            <div class="color-experience"></div> Experience 
+                            <div class="color-knowledge"></div> Knowledge
+                            <div class="color-motivation"></div> Motivation
+                        </div>
                     </div>
                 </div>
                 <div class="row-fluid collapse in">
@@ -71,8 +76,6 @@
 <script type="text/javascript">
 console.log("hello world");
 app.setupMenubar();
-rg = new RadarGraph();
-console.log("rg: ", rg);
 $(document).ready(function () {
     console.log("got document ready");
     app.init();           
