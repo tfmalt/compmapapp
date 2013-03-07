@@ -1,4 +1,21 @@
 
+
+html {
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    background-color: #ffeac0;
+    background-image: -webkit-repeating-radial-gradient(
+        250px 250px, circle, 
+        transparent, 
+        transparent 50px, 
+        rgba(255,255,255, 0.3) 50px, 
+        rgba(255,255,255,.3) 100px
+        );
+}
+
 h1, h2 {
     font-family: 'Helvetica', Sans-serif;
     color: #a00;
@@ -17,24 +34,45 @@ h1, h2 {
         color: #aaa;
         cursor: pointer;
     }
-}
 
-html {
-	margin: 0;
-    height: 100%;
-}
+    .legend {
+        display: inline-block;
+        vertical-align: middle;
+        background-color: rgba(white, 1);
+        border: 1px solid #aaa;
+        font-size: 15px;
+        color: #888;
+        padding: 4px 18px 4px 6px;
+        margin-left: 6px;
+        margin-bottom: 2px;
+        border-radius: 4px;
+        div {
+            margin-left: 12px;
+            vertical-align: middle;
+            display: inline-block;
+            position: relative;
+            top: -1px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid red;
+        }
 
-body {
-    background-color: #ffeac0;
-    background-image: -webkit-repeating-radial-gradient(
-        250px 250px, circle, 
-        transparent, 
-        transparent 50px, 
-        rgba(255,255,255, 0.3) 50px, 
-        rgba(255,255,255,.3) 100px
-        );
-}
+        .color-experience {
+            border: 1px solid #ff9900;
+            background-color: rgba(#ff9900, 0.3);
+        }
 
+        .color-knowledge {
+            border: 1px solid #4444ff;
+            background-color: rgba(#4444ff, 0.3);
+        }
+
+        .color-motivation {
+            border: 1px solid #00AA00;
+            background-color: rgba(#00AA00, 0.3);
+        }
+    }
+}
 .container-fluid {
     padding-top: 60px;
     margin: 0;
