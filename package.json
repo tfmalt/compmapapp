@@ -13,8 +13,8 @@
     "mongoose": "3.5.7"
   },
   "devDependencies": {
-    "mocha": "1.8.1",
-    "chai": "1.5.0",
+    "mocha": "~1.8.1",
+    "chai": ">= 1.5.0",
     "grunt": ">= 0.4.0",
     "grunt-contrib-watch": "0.2.0rc7",
     "grunt-contrib-sass": "0.2.2rc7",
