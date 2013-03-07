@@ -66,11 +66,13 @@
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
 <script src="js/underscore-min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/radargraph.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/app.js"></script>
 <script type="text/javascript">
 console.log("hello world");
 app.setupMenubar();
-
+rg = new RadarGraph();
+console.log("rg: ", rg);
 $(document).ready(function () {
     console.log("got document ready");
     app.init();           
