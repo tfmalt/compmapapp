@@ -1,4 +1,6 @@
-
+/**
+ * Object Literal controller for the competency map web app
+ */
 var app = {
     key:    "0Ar3jAHeUoighdDY1OGd0TGJjaFFHdDR5REl4aHRBbEE",
     people: undefined,
@@ -8,10 +10,14 @@ var app = {
     init: function () {
         console.log("Doing app init", this);
 
-        this.EventManager.on("gotdata", app.parseSpreadsheet);
-        this.EventManager.on("parsedataDone", app.generateGraphs);
-        this.EventManager.on("profile-drag-start", app.handleProfileDragStart);
-        this.EventManager.on("profile-drag-stop", app.handleProfileDragStop);
+        this.EventManager.on("gotdata",                app.parseSpreadsheet);
+        this.EventManager.on("parsedataDone",          app.generateGraphs);
+        this.EventManager.on("profile-drag-start",     app.handleProfileDragStart);
+        this.EventManager.on("profile-drag-stop",      app.handleProfileDragStop);
+        this.EventManager.on("profile-drop-activated", app.handleDropActivated);
+        this.EventManager.on("profile-drop-dropped",   app.handleProfileDropped);
+        this.EventManager.on("profile-drop-over",      app.handleProfileDropOver);
+        this.EventManager.on("profile-drop-out",       app.handleProfileDropOut);
 
         $('.title-box span').on('click', app.toggleImagebox);
 
@@ -146,12 +152,66 @@ var app = {
                 });
             }
         });
+
+        $('.imagebox .new-team-box .drag-here-placeholder').droppable({
+            accept:      ".compmap-img",
+            activeClass: "ui-state-highlight",
+            hoverClass:  "drop-hover",
+            activate: function (e, ui) {
+                app.EventManager.trigger("profile-drop-activated", {
+                    ui: ui,
+                    el: $(this)
+                });
+            },
+            drop: function (e, ui) {
+                app.EventManager.trigger("profile-drop-dropped", {
+                    ui: ui,
+                    data: data
+                });
+            },
+            over: function (e, ui) {
+                app.EventManager.trigger("profile-drop-over", {
+                    ui: ui,
+                    el: $(this)
+                });
+            },
+            out: function (e, ui) {
+                app.EventManager.trigger("profile-drop-out", {
+                    ui: ui,
+                    el: $(this)
+                });
+            }
+        });
+    },
+
+    handleDropActivated: function (event, args) {
+        console.log("got drop activated: ", event, "args:", args);
+    },
+
+    handleProfileDropped: function (event, args) {
+        console.log("got profile dropped: ", event, "args:", args);
+        var img  = args.ui.helper.context;
+        var data = args.data;
+        var name = img.id;
+
+        var url = app.getChartUrl("Team Name", data[img.id]);
+        console.log("image debug: ", data, name, url);
+        var img = $('<img src="' + url + '" id="' + "teamname" + '">')
+                .addClass('compmap-img compmap-img-team');
+
+        $('.team-boxes .new-team-box').prepend(img);
+    },
+
+    handleProfileDropOver: function (event, args) {
+        console.log("got profile drop over: ", event, "args:", args);
+    },
+
+    handleProfileDropOut: function (event, args) {
+        console.log("got profile drop out: ", event, "args:", args);
     },
 
     handleProfileDragStart: function (event, data) {
         console.log("got drag start ", event, "data: ", data);
-        // data.ui.helper.css('background-color', 'red');
-        // data.el.css('background-color', 'green');
         data.el.addClass('ui-draggable-original');
     },
 
