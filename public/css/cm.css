@@ -122,21 +122,32 @@ body {
 }
 
 /* line 123, ../../src/sass/cm.scss */
-.drag-here-placeholder {
-  display: block;
+.ui-state-highlight {
+  background-color: rgba(224, 224, 255, 0.2);
+}
+
+/* line 128, ../../src/sass/cm.scss */
+.team-boxes img {
+  display: inline-block;
+  vertical-align: top;
+}
+/* line 132, ../../src/sass/cm.scss */
+.team-boxes .drag-here-placeholder {
+  display: inline-block;
+  vertical-align: top;
   width: 222px;
   height: 228px;
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5) inset;
+  margin: 8px;
 }
-/* line 131, ../../src/sass/cm.scss */
-.drag-here-placeholder .inner {
+/* line 142, ../../src/sass/cm.scss */
+.team-boxes .drag-here-placeholder .inner {
   border: 4px dashed white;
   margin: 10px;
   height: 158px;
   position: relative;
-  top: 10px;
   padding-top: 42px;
   font-size: 56px;
   line-height: 56px;
