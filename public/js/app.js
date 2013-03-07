@@ -65,70 +65,17 @@ var app = {
 
         app.EventManager.trigger("parsedataDone", map);        
     },
-
-    getChartUrl: function (name, object) {
-        var base_uri = "//chart.googleapis.com/chart?";
-        var labels = [
-            ["Prod.Mgmt" , "Product Management"],
-            ["Agile"     , "Agile Methodologies"],
-            ["Analysis"  , "Analysis"],
-            ["UX"        , "User Experience"],
-            ["Frontend"  , "Frontend Development"],
-            ["Backend"   , "Backend Development"],
-            ["Operations", "Operations"],
-            ["Usability" , "Usability Testing"],
-            ["QA"        , "Testing and QA"]
-        ];
-
-        var size = {
-            x: 546,
-            y: 546
-        };
-
-        var colors = {
-            'everyone': {
-                'experience': 'FF9900',
-                'knowledge':  '4444FF',
-                'motivation': '00AA00'
-            }
-        };
-
-        var label_text = "chxl=0:";
-        var chart_data = "chd=t:";
-        var first = object['Product Management'].Experience;
-        _.each(labels, function(label) {
-            label_text += "|" + label[0];
-            chart_data += object[label[1]].Experience + ",";
-        });
-        chart_data += first;
-
-        var req = {
-            title:            "chtt=" + name,
-            title_color_size: "chts=888888,15.5",
-            labels:           label_text, 
-            axes:             "chxr=0,0,6|1,0,6",
-            legend_size_color: "chxs=1,00000000,60,0,lt,000000",
-            chxt:             "chxt=x,y",
-            size:             "chs=" + size.x + "x" + size.y,
-            line_type:        "cht=rs",
-            line_color:       "chco=" + colors.everyone.motivation,
-            data_size:             "chds=0,6",
-            data:              chart_data,
-            line_size:        "chls=2",
-            // chma:             "chma=0,0,0,0",
-            area_fill:        "chm=B," + colors.everyone.motivation + "22,0,0,0"
-        };
-
-        var url = base_uri + _.values(req).join("&");
-        return url;
-    },
-
     generateGraphs: function (event, data) {
         console.log("generate graphs call: ", data);
         var everyone = $('#everyone'); 
 
         _.each(data, function(object, name) {
-            var url = app.getChartUrl(name, object);
+            var rg = new RadarGraph({title: name});
+            rg.addDataset(_.pluck(object, 'Experience'));
+            rg.addDataset(_.pluck(object, 'Knowledge'));
+            rg.addDataset(_.pluck(object, 'Motivation'));
+
+            var url = rg.getUrl();
             var img = $('<img src="' + url + '" id="' + name + '">')
                 .addClass('compmap-img');
             everyone.append(img);
@@ -193,8 +140,12 @@ var app = {
         var img  = args.ui.helper.context;
         var data = args.data;
         var name = img.id;
+        var set  = _.pluck(args.data[img.id], 'Experience'); 
+        var rg = new RadarGraph({title: "Team Name"});
 
-        var url = app.getChartUrl("Team Name", data[img.id]);
+        rg.addDataset(set);
+        var url = rg.getUrl();
+
         console.log("image debug: ", data, name, url);
         var img = $('<img src="' + url + '" id="' + "teamname" + '">')
                 .addClass('compmap-img compmap-img-team');
