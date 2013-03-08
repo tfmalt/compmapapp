@@ -1,4 +1,6 @@
 
+$team-title-color: #ddd;
+$team-title-border: #ccc;
 
 html {
     margin: 0;
@@ -153,25 +155,19 @@ h1, h2 {
     border-radius: 12px;
 }
 
-.compmap-img-team {
-    width: 222px;
-    height: 222px;
-    
-}
-
 .team-box {
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 1px solid $team-title-border;
     border-radius: 12px;
     background-color: white;
     box-shadow: 0 6px 12px rgba(black, 0.3);
-
+    max-width: 238px;
     .team-box-title {
         padding: 3px 8px;
         font-size: 17px;
         color: #888;
-        border-bottom: 1px solid #ddd;
-        background-color: #eee;
+        border-bottom: 1px solid $team-title-border;
+        background-color: $team-title-color;
         border-radius: 14px 14px 0 0;
 
         span {
@@ -206,6 +202,31 @@ h1, h2 {
             padding: 2px 6px;
         }
     } 
+
+    .team-graph-box {
+        img {
+            width: 222px;
+            height: 222px;
+        }
+    }
+
+    .team-icon-box {
+        background-color: $team-title-color;
+        border-top: 1px solid $team-title-border;
+        text-align: left;
+        img {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            max-width: 100px;
+            max-height: 100px;
+            border: 1px solid $team-title-border;
+            box-shadow: 0 1px 4px rgba(black, 0.4);
+            border-radius: 8px;
+            display: inline-block;
+
+        }
+    }
 }
 
 .team-boxes {

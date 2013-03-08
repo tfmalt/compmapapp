@@ -4,7 +4,10 @@
 var app = {
     key:    "0Ar3jAHeUoighdDY1OGd0TGJjaFFHdDR5REl4aHRBbEE",
     people: undefined,
-    graphsize: { width: '222px', height: '222px' },
+    graphsize: { 
+        image: { width: '222px', height: '222px' },
+        box:   { 'max-width': '238px'}
+    },
     teams:  {},
 
     EventManager: $({}),
@@ -32,15 +35,32 @@ var app = {
     handleBoxResize: function (event) {
         console.log("got resize: ", event);
         var $box = $(event.currentTarget).parents('.team-box');
-        var big   = { width: '512px', height: '512px'};
-        var small = { width: '222px', height: '222px'};
+        var big   = { 
+            image: { 
+                width:  '512px',
+                height: '512px'
+            },
+            box: {
+                'max-width': '528px'
+            }
+        };
+        var small = {
+            image: {
+                width: '222px',
+                height: '222px'
+            },
+            box: {
+                'max-width': '238px'
+            }
+        };
 
         var size = $box.width() < 400 ? big : small;
-        app.graphsize = size;   
+        app.graphsize = size;
         console.log("what is box: ", $box.width(), $box);
 
-        $box.find('.drag-here-placeholder').css(size);
-        $box.find('img').css(size);
+        $box.css(size.box);
+        $box.find('.drag-here-placeholder').css(size.image);
+        $box.find('.team-graph-box img').css(size.image);
     },
 
     handleTitleClick: function (event) {
@@ -185,12 +205,12 @@ var app = {
 
         var who    = args.ui.helper.context.id;
         var target = args.target;
-        var $box   = target.parent();
+        var $box   = target.parents('.team-box');
         var name   = $box.attr('id');
-
-        console.log(" status: ", name, $box);
+        var $icon  = $(args.ui.helper.context).clone().attr('id', name+'-clone').removeClass();
         // No graph object already in teams: this is a new graph and
         // must be dealt with.
+        
         if (typeof app.teams[name] === 'undefined') {
             app.teams[name] = new RadarGraph({
                 title: "",
@@ -205,9 +225,9 @@ var app = {
         var set = _.pluck(args.data[who], 'Experience');
         var url = app.teams[name].addDataset(set).addColors('FF9900').getUrl();
 
-        var img = $('<img src="' + url + '" id="' + "teamname" + '">')
-                .addClass('compmap-img-team');
-                
+        var img = $('<img id="' + name + '">');
+        img.attr('src', url);
+
         img.droppable({
             accept: '.compmap-img',
             activeClass: 'ui-state-highlight',
@@ -221,8 +241,11 @@ var app = {
             }
         });
 
-        img.css(app.graphsize);
-        $box.append(img);
+        img.css(app.graphsize.image);
+        $box.css(app.graphsize.box);
+        // thumb.css({ width: '100px', height: '100px' });
+        $box.find('.team-graph-box').append(img);
+        $box.find('.team-icon-box').append($icon);
     },
 
     handleProfileDropOver: function (event, args) {
