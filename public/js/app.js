@@ -4,6 +4,7 @@
 var app = {
     key:    "0Ar3jAHeUoighdDY1OGd0TGJjaFFHdDR5REl4aHRBbEE",
     people: undefined,
+    teams:  {},
     
     EventManager: $({}),
 
@@ -65,6 +66,7 @@ var app = {
 
         app.EventManager.trigger("parsedataDone", map);        
     },
+
     generateGraphs: function (event, data) {
         console.log("generate graphs call: ", data);
         var everyone = $('#everyone'); 
@@ -137,20 +139,34 @@ var app = {
 
     handleProfileDropped: function (event, args) {
         console.log("got profile dropped: ", event, "args:", args);
+
         var img  = args.ui.helper.context;
         var data = args.data;
-        var name = img.id;
-        var set  = _.pluck(args.data[img.id], 'Experience'); 
-        var rg = new RadarGraph({title: "Team Name"});
+        var name = "Team Name";
+       
+        if (typeof app.teams[name] === 'undefined') { 
+            app.teams[name] = new RadarGraph({
+                title: name,
+                colors: ['FF9900']
+            });
+        }
 
-        rg.addDataset(set);
-        var url = rg.getUrl();
+        var set = _.pluck(args.data[img.id], 'Experience');
+        var url = app.teams[name].addDataset(set).addColors('FF9900').getUrl();
 
-        console.log("image debug: ", data, name, url);
         var img = $('<img src="' + url + '" id="' + "teamname" + '">')
                 .addClass('compmap-img compmap-img-team');
 
-        $('.team-boxes .new-team-box').prepend(img);
+        var test = $('.team-boxes .new-team-box .compmap-img-team');
+        console.log("what is test: ", test);
+        if ($('.team-boxes .new-team-box .compmap-img-team') === undefined) {
+            console.log("this is not defined adding image");
+            $('.team-boxes .new-team-box').prepend(img);
+        } else {
+            console.log("got an image replacing:");
+            img.replaceAll('.team-boxes .new-team-box .compmap-img-team');
+        }
+        // $('.team-boxes .new-team-box').prepend(img);
     },
 
     handleProfileDropOver: function (event, args) {

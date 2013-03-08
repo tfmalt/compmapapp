@@ -1,4 +1,9 @@
-
+/**
+ * A wrapper object for radar chart generation. Refactoring to this 
+ * Object pattern is still only 70% done so some mess is included.
+ * 
+ * @author Thomas Malt <thomas@malt.no>
+ */
 (function () {
     var u;
     if (typeof module === 'undefined') {
@@ -10,8 +15,6 @@
         u = require('underscore');
     }
 
-
-    
     var RadarGraph = function (args) {
         if (! u.isObject(args)) {
             throw new TypeError("an arguments object must be specified");
@@ -19,6 +22,7 @@
         if (! u.isString(args.title)) {
             throw new TypeError("title must be set.");
         }
+
         this.base_uri = "//chart.googleapis.com/chart?";
         this.labels = [
             ["Prod.Mgmt" , "Product Management"],
@@ -39,10 +43,8 @@
 
         this.title    = this.options.title;
         this.size     = this.options.size ? this.options.size : defaults.size;
-        this.datasets = this.options.datasets ? this.options.datasets : [];
-
-        this.colors = this.options.colors ? this.options.colors : defaults.colors;
-
+        this.datasets = [];
+        this.colors   = this.options.colors ? this.options.colors : defaults.colors;
     };
 
     RadarGraph.prototype.test = function () {
@@ -158,6 +160,29 @@
         return this;
     };
 
+    RadarGraph.prototype.setColors = function (colors) {
+        if (u.isString(colors)) {
+            colors = [colors];
+        }
+        if (! u.isArray(colors)) {
+            throw new TypeError('Input to function must be color string or array of color strings');
+        }
+
+        this.colors = colors;
+        return this;
+    };
+
+    RadarGraph.prototype.addColors = function (colors) {
+        if (u.isString(colors)) {
+            colors = [colors];
+        }
+        if (! u.isArray(colors)) {
+            throw new TypeError('Input to function must be color string or array of color strings');
+        }
+
+        this.colors = this.colors.concat(colors);
+        return this;
+    };
 
     // Make this both usable in a web browser and in node.
     if (typeof module === 'undefined') {
