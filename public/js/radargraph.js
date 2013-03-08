@@ -113,12 +113,24 @@
             counter += 1;
         }
         return chls;
-    }
+    };
+
+    RadarGraph.prototype.getTitleString = function () {
+        if (this.title.length == 0) return "";
+
+        var chtt = "chtt=" + this.title;
+        return chtt;
+    }; 
+
+    RadarGraph.prototype.getColorSizeString = function () {
+        var chts = "chts=888888," + (this.title.length ? "25" : "0");
+        return chts;
+    };
 
     RadarGraph.prototype.getUrl = function () {
         var req = {
-            title:             "chtt=" + this.title,
-            title_color_size:  "chts=888888,15.5",
+            title:             this.getTitleString(),
+            title_color_size:  this.getColorSizeString(),
             labels:            this.getLabelsString(),
             axes:              "chxr=0,0,6|1,0,6",
             legend_size_color: "chxs=1,00000000,60,0,lt,000000",

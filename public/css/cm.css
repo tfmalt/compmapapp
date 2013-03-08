@@ -27,7 +27,7 @@ h1, h2 {
 }
 /* line 31, ../../src/sass/cm.scss */
 .title-box span {
-  margin-left: 6px;
+  margin-left: 12px;
   font-size: 17px;
   color: #aaa;
   cursor: pointer;
@@ -84,6 +84,68 @@ h1, h2 {
 }
 
 /* line 87, ../../src/sass/cm.scss */
+.imagebox {
+  text-align: left;
+  overflow: visible;
+  padding: 24px;
+}
+
+/* line 93, ../../src/sass/cm.scss */
+.compmap-navbar {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  background-color: #222;
+}
+
+/* line 98, ../../src/sass/cm.scss */
+.compmap-navbar .navbar-inner {
+  background-color: black;
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.4), transparent);
+}
+
+/* line 107, ../../src/sass/cm.scss */
+.navbar .comp-brand {
+  margin-left: -4px;
+}
+
+/* line 111, ../../src/sass/cm.scss */
+.comp-form-container {
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+/* line 116, ../../src/sass/cm.scss */
+.comp-form-container iframe {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
+}
+
+/* line 121, ../../src/sass/cm.scss */
+.ui-draggable-dragging {
+  opacity: 0.7;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+  width: 230px;
+  height: 230px;
+}
+
+/* line 128, ../../src/sass/cm.scss */
+.ui-draggable-original {
+  opacity: 0.6;
+}
+
+/* line 132, ../../src/sass/cm.scss */
+.ui-drop-highlight {
+  background-color: rgba(128, 128, 255, 0.5);
+}
+
+/* line 137, ../../src/sass/cm.scss */
+.row-fluid .team-boxes {
+  margin: 0;
+}
+/* line 140, ../../src/sass/cm.scss */
+.row-fluid #team-map-nav {
+  margin-bottom: 0;
+}
+
+/* line 145, ../../src/sass/cm.scss */
 .compmap-img {
   width: 222px;
   height: 222px;
@@ -95,97 +157,92 @@ h1, h2 {
   border-radius: 12px;
 }
 
-/* line 99, ../../src/sass/cm.scss */
-.imagebox {
-  text-align: left;
-  overflow: visible;
+/* line 156, ../../src/sass/cm.scss */
+.compmap-img-team {
+  width: 222px;
+  height: 222px;
 }
 
-/* line 106, ../../src/sass/cm.scss */
-.compmap-navbar {
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-  background-color: #222;
+/* line 162, ../../src/sass/cm.scss */
+.team-box {
+  display: inline-block;
+  border: 1px solid #cccccc;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+/* line 169, ../../src/sass/cm.scss */
+.team-box .team-box-title {
+  padding: 3px 8px;
+  font-size: 17px;
+  color: #888;
+  border-bottom: 1px solid #dddddd;
+  background-color: #eee;
+  border-radius: 14px 14px 0 0;
+}
+/* line 177, ../../src/sass/cm.scss */
+.team-box .team-box-title span {
+  display: inline-block;
+  margin: 5px 6px;
+  cursor: pointer;
+}
+/* line 182, ../../src/sass/cm.scss */
+.team-box .team-box-title span i {
+  position: relative;
+  top: 3px;
+  margin-left: 6px;
+}
+/* line 189, ../../src/sass/cm.scss */
+.team-box .team-box-title .input-append {
+  margin-bottom: 0;
+  width: 180px;
+}
+/* line 194, ../../src/sass/cm.scss */
+.team-box .team-box-title input {
+  width: 60%;
+  margin: 0;
+}
+/* line 199, ../../src/sass/cm.scss */
+.team-box .team-box-title .btn-group {
+  float: right;
+  margin: 0;
+  top: 2px;
+}
+/* line 205, ../../src/sass/cm.scss */
+.team-box .team-box-title .btn {
+  padding: 2px 6px;
 }
 
-/* line 111, ../../src/sass/cm.scss */
-.compmap-navbar .navbar-inner {
-  background-color: black;
-  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.4), transparent);
-}
-
-/* line 120, ../../src/sass/cm.scss */
-.navbar .comp-brand {
-  margin-left: -4px;
-}
-
-/* line 124, ../../src/sass/cm.scss */
-.comp-form-container {
-  padding-left: 3px;
-  padding-right: 3px;
-}
-
-/* line 129, ../../src/sass/cm.scss */
-.comp-form-container iframe {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
-}
-
-/* line 133, ../../src/sass/cm.scss */
-.new-team-box {
-  background-color: rgba(255, 255, 255, 0.5);
-  padding: 24px;
+/* line 211, ../../src/sass/cm.scss */
+.team-boxes {
+  /* background-color: rgba(255,255,255, 0.5); */
   /* margin: -20px -26px 20px -26px; */
   border: 1px solid #dddddd;
   border-top: 0;
 }
-
-/* line 141, ../../src/sass/cm.scss */
-.row-fluid .team-boxes {
-  margin: 0;
-}
-/* line 144, ../../src/sass/cm.scss */
-.row-fluid #team-map-nav {
-  margin-bottom: 0;
-}
-
-/* line 150, ../../src/sass/cm.scss */
-.ui-draggable-dragging {
-  opacity: 0.7;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
-  width: 230px;
-  height: 230px;
-}
-
-/* line 157, ../../src/sass/cm.scss */
-.ui-draggable-original {
-  opacity: 0.6;
-}
-
-/* line 161, ../../src/sass/cm.scss */
-.ui-state-highlight {
-  background-color: rgba(224, 224, 255, 0.2);
-}
-
-/* line 166, ../../src/sass/cm.scss */
+/* line 217, ../../src/sass/cm.scss */
 .team-boxes img {
   display: inline-block;
   vertical-align: top;
+  margin: 8px;
 }
-/* line 170, ../../src/sass/cm.scss */
+/* line 222, ../../src/sass/cm.scss */
 .team-boxes .drag-here-placeholder {
   display: inline-block;
   vertical-align: top;
   width: 222px;
-  height: 228px;
+  height: 232px;
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5) inset;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3) inset;
   margin: 8px;
 }
-/* line 180, ../../src/sass/cm.scss */
+/* line 232, ../../src/sass/cm.scss */
 .team-boxes .drag-here-placeholder .inner {
   border: 4px dashed white;
+  border-radius: 8px;
   margin: 10px;
-  height: 158px;
+  height: 162px;
   position: relative;
   padding-top: 42px;
   font-size: 56px;

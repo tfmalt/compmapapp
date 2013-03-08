@@ -4,25 +4,80 @@
 var app = {
     key:    "0Ar3jAHeUoighdDY1OGd0TGJjaFFHdDR5REl4aHRBbEE",
     people: undefined,
+    graphsize: { width: '222px', height: '222px' },
     teams:  {},
-    
+
     EventManager: $({}),
 
     init: function () {
         console.log("Doing app init", this);
 
-        this.EventManager.on("gotdata",                app.parseSpreadsheet);
-        this.EventManager.on("parsedataDone",          app.generateGraphs);
-        this.EventManager.on("profile-drag-start",     app.handleProfileDragStart);
-        this.EventManager.on("profile-drag-stop",      app.handleProfileDragStop);
-        this.EventManager.on("profile-drop-activated", app.handleDropActivated);
-        this.EventManager.on("profile-drop-dropped",   app.handleProfileDropped);
-        this.EventManager.on("profile-drop-over",      app.handleProfileDropOver);
-        this.EventManager.on("profile-drop-out",       app.handleProfileDropOut);
+        this.EventManager.on("gotdata",                this.parseSpreadsheet);
+        this.EventManager.on("parsedataDone",          this.generateGraphs);
+        this.EventManager.on("profile-drag-start",     this.handleProfileDragStart);
+        this.EventManager.on("profile-drag-stop",      this.handleProfileDragStop);
+        this.EventManager.on("profile-drop-activated", this.handleDropActivated);
+        this.EventManager.on("profile-drop-dropped",   this.handleProfileDropped);
+        this.EventManager.on("profile-drop-over",      this.handleProfileDropOver);
+        this.EventManager.on("profile-drop-out",       this.handleProfileDropOut);
+        this.EventManager.on("title-change-done",      this.handleTitleChange);
 
-        $('.title-box span').on('click', app.toggleImagebox);
+        $('.title-box span').on('click',      app.toggleImagebox);
+        $('.team-box-title span').on('click', app.handleTitleClick);
+        $('.team-box-title #resize').on('click', this.handleBoxResize);
 
         this.getData();
+    },
+
+    handleBoxResize: function (event) {
+        console.log("got resize: ", event);
+        var $box = $(event.currentTarget).parents('.team-box');
+        var big   = { width: '512px', height: '512px'};
+        var small = { width: '222px', height: '222px'};
+
+        var size = $box.width() < 400 ? big : small;
+        app.graphsize = size;   
+        console.log("what is box: ", $box.width(), $box);
+
+        $box.find('.drag-here-placeholder').css(size);
+        $box.find('img').css(size);
+    },
+
+    handleTitleClick: function (event) {
+        console.log("Title got clicked: ", event);
+
+        var $title  = $(event.currentTarget.parentElement);
+        var $target = $(event.currentTarget);
+
+        var text = $target.text();
+
+        var $input = $('<input type="text" value="' + text + '">')
+            .on('keyup', function (event) {
+                if (event.keyCode == 13) {
+                    app.EventManager.trigger('title-change-done', event.currentTarget);
+                }
+            });
+
+        $target.remove();
+        $title.append($input);
+    },
+
+    handleTitleChange: function (event, target) {
+        console.log("got title change: ", event, target.value);
+        var text   = target.value;
+        var $title = $(target.parentElement);
+        var $box   = $(target.parentElement.parentElement);
+
+        var oldid = $box.attr('id');
+        var id    = text.toLowerCase().replace(" ", "-");
+        var span  = $('<span>' + text + '</span>').append('<i class="icon-pencil"></i>');
+        
+        app.teams[id] = app.teams[oldid];
+        
+        $(target).remove();
+        $title.append(span);
+        $box.attr('id', id);
+        span.on('click', app.handleTitleClick);
     },
 
     setupMenubar: function () {
@@ -64,12 +119,12 @@ var app = {
 
         app.people = map;
 
-        app.EventManager.trigger("parsedataDone", map);        
+        app.EventManager.trigger("parsedataDone", map);
     },
 
     generateGraphs: function (event, data) {
         console.log("generate graphs call: ", data);
-        var everyone = $('#everyone'); 
+        var everyone = $('#everyone');
 
         _.each(data, function(object, name) {
             var rg = new RadarGraph({title: name});
@@ -90,7 +145,7 @@ var app = {
             helper: 'clone',
             start: function (e, ui) {
                 app.EventManager.trigger("profile-drag-start", {
-                    ui: ui, 
+                    ui: ui,
                     el: $(this)
                 });
             },
@@ -102,32 +157,16 @@ var app = {
             }
         });
 
-        $('.imagebox .new-team-box .drag-here-placeholder').droppable({
+        // Setup droppable area
+        $('.team-box .drag-here-placeholder').droppable({
             accept:      ".compmap-img",
-            activeClass: "ui-state-highlight",
-            hoverClass:  "drop-hover",
-            activate: function (e, ui) {
-                app.EventManager.trigger("profile-drop-activated", {
-                    ui: ui,
-                    el: $(this)
-                });
-            },
+            activeClass: "ui-drop-highlight",
+            hoverClass:  "ui-drop-hover",
             drop: function (e, ui) {
                 app.EventManager.trigger("profile-drop-dropped", {
-                    ui: ui,
-                    data: data
-                });
-            },
-            over: function (e, ui) {
-                app.EventManager.trigger("profile-drop-over", {
-                    ui: ui,
-                    el: $(this)
-                });
-            },
-            out: function (e, ui) {
-                app.EventManager.trigger("profile-drop-out", {
-                    ui: ui,
-                    el: $(this)
+                    ui:     ui,
+                    target: $(this),
+                    data:   data
                 });
             }
         });
@@ -137,36 +176,53 @@ var app = {
         console.log("got drop activated: ", event, "args:", args);
     },
 
+    /**
+     * Event handler for when a profile graph is dropped on a target
+     * able to deal with it
+     */
     handleProfileDropped: function (event, args) {
         console.log("got profile dropped: ", event, "args:", args);
 
-        var img  = args.ui.helper.context;
-        var data = args.data;
-        var name = "Team Name";
-       
-        if (typeof app.teams[name] === 'undefined') { 
+        var who    = args.ui.helper.context.id;
+        var target = args.target;
+        var $box   = target.parent();
+        var name   = $box.attr('id');
+
+        console.log(" status: ", name, $box);
+        // No graph object already in teams: this is a new graph and
+        // must be dealt with.
+        if (typeof app.teams[name] === 'undefined') {
             app.teams[name] = new RadarGraph({
-                title: name,
+                title: "",
                 colors: ['FF9900']
             });
         }
 
-        var set = _.pluck(args.data[img.id], 'Experience');
+        target.remove();
+        
+        // $('.team-boxes .new-team-box .compmap-img-team').remove();
+
+        var set = _.pluck(args.data[who], 'Experience');
         var url = app.teams[name].addDataset(set).addColors('FF9900').getUrl();
 
         var img = $('<img src="' + url + '" id="' + "teamname" + '">')
-                .addClass('compmap-img compmap-img-team');
+                .addClass('compmap-img-team');
+                
+        img.droppable({
+            accept: '.compmap-img',
+            activeClass: 'ui-state-highlight',
+            hoverClass: 'ui-drop-hover',
+            drop: function (e, ui) {
+                app.EventManager.trigger("profile-drop-dropped", {
+                    ui: ui,
+                    target: $(this),
+                    data: args.data
+                });
+            }
+        });
 
-        var test = $('.team-boxes .new-team-box .compmap-img-team');
-        console.log("what is test: ", test);
-        if ($('.team-boxes .new-team-box .compmap-img-team') === undefined) {
-            console.log("this is not defined adding image");
-            $('.team-boxes .new-team-box').prepend(img);
-        } else {
-            console.log("got an image replacing:");
-            img.replaceAll('.team-boxes .new-team-box .compmap-img-team');
-        }
-        // $('.team-boxes .new-team-box').prepend(img);
+        img.css(app.graphsize);
+        $box.append(img);
     },
 
     handleProfileDropOver: function (event, args) {
@@ -178,12 +234,10 @@ var app = {
     },
 
     handleProfileDragStart: function (event, data) {
-        console.log("got drag start ", event, "data: ", data);
         data.el.addClass('ui-draggable-original');
     },
 
     handleProfileDragStop: function (event, args) {
-        console.log("got drag stop ", event, "args: ", args);
         args.el.removeClass('ui-draggable-original');
     },
 

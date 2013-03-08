@@ -41,46 +41,46 @@
                 </div>
                 <div class="row-fluid">
                     <div class="span12 title-box">
-                        <h2>Team Map</h2>
+                        <h2>Team Maps</h2>
                         <span id="team-map-toggle" data-toggle="true", data-target="#team-map">Hide</span>
+                        <span id="new-team-create">New Team</span>
                     </div>
                 </div>
                 <div class="row-fluid">
-                    <ul class="nav nav-tabs" id="team-map-nav">
-                        <li class="active">
-                            <a href="#">Undefined</a>
-                        </li>
-                        <li><a href="#">New Team</a></li>
-                        <li><a href="#">Settings</a></li>
-                    </ul>
                     <div class="span12 imagebox team-boxes">
-                        <div class="new-team-box">
-                            <div class="drag-here-placeholder">
-                                <div class="inner">
-                                    Drag<br>
-                                    Here    
+                        <div id="untitled-team" class="team-box">
+                            <div class="team-box-title">
+                                <span>Untitled Team<i class="icon-pencil"></i></span>
+                                <div class="btn-group">
+                                    <a id="resize" class="btn" href="#"><i class="icon-resize-full"></i></a>
                                 </div>
                             </div>
+                            <div class="team-graph-box">
+                                <div class="drag-here-placeholder">
+                                    <div class="inner">
+                                        Drag<br>
+                                        Here    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="team-icon-box"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
-<script src="js/underscore-min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/radargraph.js" type="text/javascript"></script>
-<script type="text/javascript" src="js/app.js"></script>
-<script type="text/javascript">
-console.log("hello world");
-app.setupMenubar();
-$(document).ready(function () {
-    console.log("got document ready");
-    app.init();           
-});
-</script>
-
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+    <script src="js/underscore-min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/radargraph.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript">
+    app.setupMenubar();
+    $(document).ready(function () {
+        app.init();           
+    });
+    </script>
 </body>
 </html>

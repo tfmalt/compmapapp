@@ -29,7 +29,7 @@ h1, h2 {
     }
 
     span {
-        margin-left: 6px;
+        margin-left: 12px;
         font-size: 17px;
         color: #aaa;
         cursor: pointer;
@@ -84,23 +84,10 @@ h1, h2 {
 
 }
 
-.compmap-img {
-    width: 222px;
-    height: 222px;
-    border: 1px solid #aaa;
-    background-color: white;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    margin: 8px;
-    padding-top: 6px;
-    border-radius: 12px;
-}
-
-
 .imagebox {
     text-align: left;
     overflow: visible;
-    
-
+    padding: 24px;
 }
 
 .compmap-navbar {
@@ -130,22 +117,6 @@ h1, h2 {
     box-shadow: 0 4px 16px rgba(0,0,0, 0.7);
 }
 
-.new-team-box {
-    background-color: rgba(255,255,255, 0.5);
-    padding: 24px;
-    /* margin: -20px -26px 20px -26px; */
-    border: 1px solid #ddd;
-    border-top: 0;
-}
-.row-fluid {
-    .team-boxes {
-        margin: 0;
-    }
-    #team-map-nav {
-        margin-bottom: 0;
-    }
-}
-
 
 .ui-draggable-dragging {
     opacity: 0.7;
@@ -158,29 +129,111 @@ h1, h2 {
     opacity: 0.6;
 }
 
-.ui-state-highlight {
-    background-color: rgba(224,224,255, 0.2);
+.ui-drop-highlight {
+    background-color: rgba(128,128,255, 0.5);
+}
+
+.row-fluid {
+    .team-boxes {
+        margin: 0;
+    }
+    #team-map-nav {
+        margin-bottom: 0;
+    }
+}
+
+.compmap-img {
+    width: 222px;
+    height: 222px;
+    border: 1px solid #aaa;
+    background-color: white;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    margin: 8px;
+    padding-top: 6px;
+    border-radius: 12px;
+}
+
+.compmap-img-team {
+    width: 222px;
+    height: 222px;
+    
+}
+
+.team-box {
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 6px 12px rgba(black, 0.3);
+
+    .team-box-title {
+        padding: 3px 8px;
+        font-size: 17px;
+        color: #888;
+        border-bottom: 1px solid #ddd;
+        background-color: #eee;
+        border-radius: 14px 14px 0 0;
+
+        span {
+            display: inline-block;
+            margin: 5px 6px;
+            cursor: pointer;
+
+            i {
+                position: relative;
+                top: 3px;
+                margin-left: 6px;
+            }
+        }
+
+        .input-append {
+            margin-bottom: 0;
+            width: 180px;
+        }
+
+        input {
+            width: 60%;
+            margin: 0;
+        }
+
+        .btn-group {
+            float: right;
+            margin: 0;
+            top: 2px;
+        }
+
+        .btn {
+            padding: 2px 6px;
+        }
+    } 
 }
 
 .team-boxes {
+    /* background-color: rgba(255,255,255, 0.5); */
+    /* margin: -20px -26px 20px -26px; */
+    border: 1px solid #ddd;
+    border-top: 0;
+
     img {
         display: inline-block;
         vertical-align: top;
+        margin: 8px;
     }
     .drag-here-placeholder {
         display: inline-block;
         vertical-align: top;
         width: 222px;
-        height: 228px;
+        height: 232px;
         background-color: rgba(black, 0.1);
         border-radius: 12px;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5) inset;
+        box-shadow: 0 2px 12px rgba(black, 0.3) inset;
         margin: 8px;
 
         .inner {
             border: 4px dashed white;
+            border-radius: 8px;
             margin: 10px;
-            height: 158px;
+            height: 162px;
             position: relative;
             padding-top: 42px;
             font-size: 56px;
