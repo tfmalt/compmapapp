@@ -6,13 +6,14 @@
  */
 (function () {
     var u;
-    if (typeof module === 'undefined') {
+    if (typeof module === 'object') {
+        u = require('underscore');
+    } else {
         if (typeof _ === 'undefined') {
-            throw new TypeError("This module depends on underscore please include it");
+            throw new TypeError("RardarGraph depends on underscore please include it");
         }
         u = _;
     } else {
-        u = require('underscore');
     }
 
     var RadarGraph = function (args) {
@@ -202,4 +203,5 @@
     } else {
         module.exports = RadarGraph;
     }
+
 })();
