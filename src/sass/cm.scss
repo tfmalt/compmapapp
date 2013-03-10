@@ -1,6 +1,5 @@
+@import "base";
 
-$team-title-color: #ddd;
-$team-title-border: #ccc;
 
 html {
     margin: 0;
@@ -8,9 +7,9 @@ html {
 }
 
 body {
-    background-color: #ffeac0;
+    background-color: $startsiden-yellow;
     background-image: -webkit-repeating-radial-gradient(
-        250px 250px, circle, 
+        33% 33%, circle, 
         transparent, 
         transparent 50px, 
         rgba(255,255,255, 0.3) 50px, 
@@ -265,4 +264,40 @@ h1, h2 {
             color: white;
         }
     }
+}
+
+.login-form-box {
+    margin-top: 20%;
+    border: 1px solid #888;
+    border-radius: 12px;
+    background-color: rgba(white, 0.6);
+    box-shadow: 0 6px 12px rgba(black, 0.3);
+
+    h1 {
+        border-bottom: 1px solid #888;
+        padding: 10px 24px; 
+        font-size: 17px;
+        margin: 0 0 20px 0;
+        line-height: 17px;
+        border-radius: 12px 12px 0 0;
+        background-color: rgba(white, 0.6);
+        text-shadow: 0 -1px rgba(black, 0.5);
+
+        @include background-image (
+            linear-gradient(
+                top,
+                rgba(black, 0.2) 0%,
+                rgba(white, 1) 100%
+            )
+        );
+    }
+    form {
+        label {
+            font-size: 19;
+            color: #888;
+        }
+    }
+
+
+
 }
