@@ -28,8 +28,6 @@ var app = {
         $('.title-box span').on('click',      app.toggleImagebox);
         $('.team-box-title span').on('click', app.handleTitleClick);
         $('.team-box-title #resize').on('click', this.handleBoxResize);
-
-        this.getData();
     },
 
     handleBoxResize: function (event) {
@@ -102,7 +100,7 @@ var app = {
 
     setupMenubar: function () {
         var structure = {
-            'Home': 'index.html',
+            'Home': '/',
             'the Form': 'theform.html',
             'the Report': 'thereport.html'
         };
