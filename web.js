@@ -4,27 +4,33 @@
  * 
  * @author Thomas Malt <thomas.malt@startsiden.no>
  */
-var async   = require('async');
-var express = require('express');
-var util    = require('util');
-var u       = require('underscore');
-var routes  = require('./routes');
+ var async   = require('async');
+ var express = require('express');
+ var util    = require('util');
+ var u       = require('underscore');
+ var routes  = require('./routes');
 
 // create an express webserver
 var app = express();
 
-app.use(express.logger());
-app.use(express.static(__dirname + '/public'));
-app.use(express.bodyParser());
-app.use(express.cookieParser());
+app.configure(function () {
+    app.use(express.logger());
+    app.use(express.bodyParser());
+    app.use(express.cookieParser());
 
-app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
+    app.use(express.cookieSession({
+        secret: process.env.SESSION_SECRET || 'compmap'
+    }));
 
-// set this to a secret value to encrypt session cookies
-app.use(express.cookieSession({
-    secret: process.env.SESSION_SECRET || 'compmap'
-}));
+    app.use(passport.initialize());
+    app.use(passport.session());
+    app.use(app.router);
+
+    app.set('views', __dirname + '/views');
+    app.set('view engine', 'jade');
+
+    app.use(express.static(__dirname + '/public'));
+});
 
 // Sets up the facebook integration
 // app.use(require('faceplate').middleware({
