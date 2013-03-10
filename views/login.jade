@@ -1,0 +1,11 @@
+doctype 
+html(lang="en")
+    include includes/head
+    body
+        h1 login
+
+        form(action="/login", method="post")
+            input(type="text", name="username", id="username")
+            input(type="password", name="password", id="password")
+            input(type="submit", name="submit", id="submit", value="Login")
+
