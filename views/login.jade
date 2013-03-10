@@ -2,10 +2,34 @@ doctype
 html(lang="en")
     include includes/head
     body
-        h1 login
+        include includes/menu
+        div(class="container-fluid")
+            div(class="row-fluid")
+                div(class="span6 offset3 login-form-box")
+                    h1 Competency Map Login
+                    form(action="/login", method="post", class="form-horizontal")
+                        div(class="control-group")
+                            label(class="control-label", for="username") Username
+                            div(class="controls")
+                                input(
+                                    class="span8"
+                                    type="text", 
+                                    name="username", 
+                                    id="username", 
+                                    placeholder="Username")
+                        div(class="control-group")
+                            label(class="control-label", for="password") Password
+                            div(class="controls")
+                                input(
+                                    class="span8",
+                                    type="password", 
+                                    name="password", 
+                                    id="password",
+                                    placeholder="Password")
+                        div(class="control-group")
+                            div(class="controls")
+                                button(type="submit", class="btn btn-primary") Login
 
-        form(action="/login", method="post")
-            input(type="text", name="username", id="username")
-            input(type="password", name="password", id="password")
-            input(type="submit", name="submit", id="submit", value="Login")
-
+        include includes/scripts
+        script
+            app.setupMenubar();
