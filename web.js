@@ -5,16 +5,15 @@
  * @author Thomas Malt <thomas.malt@startsiden.no>
  */
 
-var async                  = require('async'),
-    express                = require('express'),
-    util                   = require('util'),
-    u                      = require('underscore'),
-    routes                 = require('./routes'),
-    passport               = require('passport'),
-    flash                  = require('connect-flash'),
-    AtlassianCrowdStrategy = require('passport-atlassian-crowd').Strategy;
-
-var users = [];
+ var async                  = require('async'),
+     express                = require('express'),
+     util                   = require('util'),
+     u                      = require('underscore'),
+     routes                 = require('./routes'),
+     passport               = require('passport'),
+     flash                  = require('connect-flash'),
+     AtlassianCrowdStrategy = require('passport-atlassian-crowd').Strategy,
+     users                  = [];
 
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
@@ -38,33 +37,29 @@ passport.deserializeUser(function (username, done) {
     }
 });
 
-
 // Use the AtlassianCrowdStrategy within Passport.
 //   Strategies in passport require a `verify` function, which accept
 //   credentials (in this case a crowd user profile), and invoke a callback
 //   with a user object.  In the real world, this would query a database;
 //   however, in this example we are using a baked-in set of users.
 passport.use(new AtlassianCrowdStrategy({
-        crowdServer: process.env.CROWD_URL || "https://crowd.startsiden.no/crowd",
-        crowdApplication: process.env.CROWD_APP || "compmap",
-        crowdApplicationPassword: process.env.CROWD_PASSWORD || "password",
-        retrieveGroupMemberships: true
-    },
-    function (userprofile, done) {
-        console.log("Got successful authentication: ", userprofile);
-        // asynchronous verification, for effect...
-        process.nextTick(function () {
-            var exists = u.any(users, function (user) {
-                return user.id = userprofile.id;
-            });
-            if (!exists) {
-                users.push(userprofile);
-            }
-
-            return done(null, userprofile);
+    crowdServer: process.env.CROWD_URL || "https://crowd.startsiden.no/crowd",
+    crowdApplication: process.env.CROWD_APP || "compmap",
+    crowdApplicationPassword: process.env.CROWD_PASSWORD || "password",
+    retrieveGroupMemberships: true
+},
+function (userprofile, done) {
+    process.nextTick(function () {
+        var exists = u.any(users, function (user) {
+            return user.id = userprofile.id;
         });
-    }
-));
+        if (!exists) {
+            // add jira.
+            users.push(userprofile);
+        }
+        return done(null, userprofile);
+    });
+}));
 
 
 // create an express webserver
@@ -107,10 +102,19 @@ app.post('/login',
         failureFlash: "Invalid username or password."
     }),
     function (req, res) {
-        res.redirect('/');
+        // console.log("Redirecting request: ", users);
+        if (typeof req.user.pictureUrl === 'undefined') {
+            getProfilePicture(req, res);
+        } else {
+            res.redirect('/');
+        }
     }
 );
 
+app.get('/logout', function (req, res) {
+    req.logout();
+    res.redirect('/');
+});
 
 
 function ensureAuthenticated (req, res, next) {
@@ -121,3 +125,34 @@ function ensureAuthenticated (req, res, next) {
 
     res.redirect('/login');
 }
+
+var getProfilePicture = function (req, res) {
+    console.log("Fetching profile picture for: ", req.user.username);
+    var https = require('https');
+    var url   = require('url');
+
+    var options = {
+        hostname: url.parse(process.env.JIRA_URL).hostname,
+        auth: process.env.JIRA_USER + ':' + process.env.CROWD_PASSWORD,
+        path: '/rest/api/2/user?username=' + req.user.username
+    };
+
+    var profile_request = https.request(options, function (profile_res) {
+        // console.log("status code: ", res.statusCode);
+        // console.log("headers: ", res.headers);
+
+        profile_res.on('data', function (d) {
+            var obj = JSON.parse(d);
+            console.log("got data: ", obj.avatarUrls);
+            req.user.pictureUrl = obj.avatarUrls['48x48'];
+            res.redirect("/");
+        });
+    });
+
+    profile_request.on('error', function (e) {
+        console.error(e);
+    });
+
+    profile_request.end();
+};
+
