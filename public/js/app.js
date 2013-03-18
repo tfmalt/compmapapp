@@ -105,7 +105,7 @@ var app = {
             'the Report': 'thereport.html'
         };
 
-        var bar   = $('.compmap-navbar ul.nav');
+        var bar   = $('#compmap-menu');
         var active = $(location).attr("pathname").split("/").pop();
         _.each(structure, function(value, key) {
             var item = $('<li><a href="' + value + '">' + key + '</a></li>');

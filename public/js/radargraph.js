@@ -13,7 +13,6 @@
             throw new TypeError("RardarGraph depends on underscore please include it");
         }
         u = _;
-    } else {
     }
 
     var RadarGraph = function (args) {
