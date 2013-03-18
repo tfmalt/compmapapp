@@ -8,6 +8,15 @@ html(lang="en")
                 div(class="span6 offset3 login-form-box")
                     h1 Competency Map Login
                     form(action="/login", method="post", class="form-horizontal")
+                        div(class=typeof errormsg === "undefined" ? "alert" : "alert alert-error")
+                            if (typeof errormsg === "undefined")
+                                | Log in with your startsiden 
+                                b JIRA / Confluence 
+                                | credentials.
+                            else
+                                b Error:
+                                | #{errormsg}
+                                | Try again 
                         div(class="control-group")
                             label(class="control-label", for="username") Username
                             div(class="controls")

@@ -14,9 +14,12 @@ html(lang="en")
                         data-target="#everyone") Hide
 
                     div(class="legend")
-                        div(class="color-experience") Experience 
-                        div(class="color-knowledge") Knowledge
-                        div(class="color-motivation") Motivation
+                        div(class="color-experience") 
+                        span Experience 
+                        div(class="color-knowledge") 
+                        span Knowledge
+                        div(class="color-motivation") 
+                        span Motivation
 
             div(class="row-fluid collapse in")
                 div(class="span12 imagebox", id="everyone")
@@ -51,6 +54,7 @@ html(lang="en")
         script(src="js/radargraph.js")
         script
             app.setupMenubar();
-                $(document).ready(function () {
-                    app.init();     
-                    app.getData();
+            $(document).ready(function () {
+                app.init();     
+                app.getData();
+            });
